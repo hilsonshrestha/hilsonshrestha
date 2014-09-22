@@ -61,14 +61,112 @@ canvas {
 	z-index: 1;
 }
 
-		.icon {
-			/*background-image: url('/static/img/icons.png');*/
-			background-image: url('/static/img/icons_white.png');
-			height: 32px;
-			width: 32px
-		}
+.icon {
+	/*background-image: url('/static/img/icons.png');*/
+	background-image: url('/static/img/icons_white.png');
+	height: 32px;
+	width: 32px
+}
 
-		.icon:hover {
-			opacity: 1;
-		}
+.icon:hover {
+	opacity: 1;
+}
 
+
+
+#subTitle {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	bottom: 0;
+	left: 0;
+	cursor: default;
+}
+
+#myEmail, #subTitleText {
+	position: absolute;
+	bottom: 12px;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: rgba(255, 255, 255, .65);
+	display: none;
+}
+#subTitleText {
+	z-index: 10;
+
+}
+#myEmail {
+	display: block;
+	z-index: 1;
+}
+
+#introBackgroundCanvasContainer {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+#subTitleText span {
+	cursor: pointer;
+	color: #ddd;
+}
+
+#subTitleText span:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#aboutMe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .85);
+	background: #364b71;
+	color: #fff;
+	overflow-y: auto;
+	font-family: 'Bitter';
+	line-height: 1.75em;
+}
+
+#aboutMe p + p {
+	margin-top: 3em; 
+}
+
+#aboutMe img.me {
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+	height:200px;
+}
+
+.btnClose {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	height: 32px;
+	width: 32px;
+	z-index: 20;
+	overflow: hidden;
+	background-position: -76px -261px;
+	transform: scale(0.5);
+	transition: 700ms cubic-bezier(0.2,2,.53,1.04);
+	opacity: .5;
+	cursor: pointer;
+}
+.btnClose:hover {
+	transform: scale(1);
+}
+
+#subTitleText a {
+	text-decoration: inherit;
+	color: inherit;
+}
