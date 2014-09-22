@@ -1,16 +1,6 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	background-color: #0054a6;
-background: #00225e; /* Old browsers */
-background: -moz-linear-gradient(top,  #00225e 0%, #0054a6 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00225e), color-stop(100%,#0054a6)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #00225e 0%,#0054a6 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #00225e 0%,#0054a6 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #00225e 0%,#0054a6 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #00225e 0%,#0054a6 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00225e', endColorstr='#0054a6',GradientType=0 ); /* IE6-9 */
-
 	background: #364b71;
 	font-family: 'PT Sans', arial, sans-serif;
 	color: #ffffff;
@@ -40,6 +30,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00225e', end
 
 #myName:hover {
 	color: rgba(255, 255, 255, .5);
+	text-decoration: underline;
 }
 
 #myName:active {
@@ -66,7 +57,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00225e', end
 }
 
 canvas {
-	/*cursor: pointer;*/
 	position: relative;
 	z-index: 1;
 }

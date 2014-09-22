@@ -6,9 +6,18 @@ class Article (db.Model):
 	'''An Article'''
 
 	title = db.StringProperty(required = True)
+
+	# Content of the article.
+	# HTML is allowed for content.
 	content = db.TextProperty(required = True)
+
 	created = db.DateTimeProperty(auto_now_add = True)
+
+	# To be used while searching for articles.
 	tags = db.ListProperty(str)
+
+	# Url of main image related to this article.
+	# Used while listing article.
 	image = db.StringProperty()
 	
 	def cache(self):
@@ -20,10 +29,11 @@ class Article (db.Model):
 
 	@staticmethod
 	def get(key):
+		# Tries to access the article from cache.
+		# If unavailable, access the article from db.
 		mem_key = str(key)
 		article = memcache.get(mem_key)
 		if not article:
-			print "db req"
 			try:
 				article = db.get(key)
 			except:
@@ -34,18 +44,27 @@ class Article (db.Model):
 
 	@staticmethod
 	def get_eq(offset = 0, limit = 10):
+		# Returns a list of articles based on offset.
+
 		if offset < 0: offset = 0
+
+		# Accesses article keys only.
 		q = Article.all(keys_only = True)
 		q.order('-created')
+
+		# fetch and return article from key
 		return [Article.get(key) for key in q.run(offset = offset, limit = limit)]
 
 
 class ArticleTag (db.Model):
+	'''Lets make searching easier'''
+
 	articles = db.ListProperty(db.Key)
 	created = db.DateTimeProperty(auto_now_add = True)
 
 	@staticmethod
 	def _key(tag):
+		# Returns key for caching purpose.
 		if id:
 			return "articleKey/" + str(tag)
 		else:
