@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+	<title>Admin - Hilson Shrestha</title>
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="/static/css/pageLayout.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/widgets.css">
+	<style type="text/css">
+	</style>
+{% endblock %}
+
+{% block main %}
+<main>
+	<div class="mid">
+		{% if logoutUrl %}<a href="{{logoutUrl}}">Log Out</a>{% endif %}
+		<form method="post">
+			<input name="title" placeholder="Title">
+			<input name="image" placeholder="image">
+			<textarea name="content"></textarea>
+			<input name="tags" placeholder="tags separated by comma">
+			<button type="button">Preview</button>
+			<button type="submit">Submit</button>
+		</form>
+		<div>{{message}}</div>
+	</div>
+</main>
+
+{% endblock %}

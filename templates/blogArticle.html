@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="/static/css/pageLayout.css">
+	<style type="text/css">
+		#subTitle {
+			width: 100%;
+			text-align: center;
+			font-size: 48px;
+			margin: 0;
+			padding: 60px 0 20px;
+		}
+
+		#headerBackground {
+			background-image: url('/static/img/background2.jpg');
+		}
+	</style>
+
+{% endblock %}
+
+{% block main %}
+	<main>
+		<h2 id="subTitle"><a href="/blog/{{article._id}}">{{article.title}}</a>
+			<div class="pubDate" style="font-size:16px; color:#789;">{{article._created}}</div>
+		</h2>
+		<article class="mid640">
+			<div class="content">{{article._content}}</div>
+		</article>
+	</main>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block title %}<title>Hilson Shrestha</title>{% endblock %}
+	{% block fonts %}{% endblock %}
+	{% block stylesheets %}{% endblock %}
+	<style>
+	</style>
+</head>
+<body>
+	{% block header %}
+	<header>
+		<div id="headerBackground"></div>
+		<div id="headerTitle">
+			<div class="mid">
+				<div style="float:left;position:relative;">Hilson Shrestha</div>
+				<div style="float:right;position:relative;">Web Developer &#0149; Designer</div>
+			</div>
+		</div>
+		<h1>{{pageTitle}}</h1>
+		<nav>
+			<ul>
+				<li><a href="/">Me</a></li>
+				<li><a href="/blog">Blog</a></li>
+				<li><a href="/portfolio">Portfolio</a></li>
+			</ul>
+		</nav>
+	</header>
+	{% endblock %}
+	{% block main %}<main></main>{% endblock %}
+	{% block footer %}<footer> &#0169; 2014 Hilson Shrestha</footer>{% endblock %}
+
+	<script type="text/javascript" src="/static/js/jquery.js"></script>
+	<script type="text/javascript">
+		var d = $(document);
+		var headerBackground = $('#headerBackground');
+		var subtitleBackground = $('#subTitle');
+		$(window).scroll(function(event) {
+			var top = d.scrollTop();
+			if (top < 500) {
+				headerBackground.css({
+					backgroundPosition: '0 ' + (top / 2) + 'px'
+				});
+			}
+		});
+	</script>
+	{% block scripts %}{% endblock %}
+	<!-- Hilson Shrestha (c) 2014 -->
+</body>
+</html>
