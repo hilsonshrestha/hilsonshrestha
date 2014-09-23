@@ -83,7 +83,7 @@ canvas {
 	cursor: default;
 }
 
-#myEmail, #subTitleText {
+#menu, #subTitleText {
 	position: absolute;
 	bottom: 12px;
 	width: 100%;
@@ -96,7 +96,7 @@ canvas {
 	z-index: 10;
 
 }
-#myEmail {
+#menu {
 	display: block;
 	z-index: 1;
 }

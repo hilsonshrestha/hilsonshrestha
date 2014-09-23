@@ -58,7 +58,15 @@ $('#subTitle').mouseenter(function(event) {
   		CIntro.stopAnimation();
   	});
 	CIntro.startAnimation();
-	$('#subTitleText').stop().fadeIn(1500);
+	setTimeout(function () {
+		$('#subTitleText').stop().css({
+			bottom:'-15px',
+			opacity: 0
+		}).show().animate({
+			bottom: '14px',
+			opacity: 1
+		}, 1000);
+	}, 500);
 
 }).mouseleave(function(event) {
 	$('#subTitleText').stop().fadeOut();
