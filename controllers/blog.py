@@ -77,37 +77,41 @@ class BlogAdminPage(BaseHandler):
 		self.write(('<a href="%s">Sign in or register</a>.' %users.create_login_url('/blog/admin')))
 
 	def post(self):
-		params = self.get_params_dict(['title', 'pubDate', 'content', 'tags', 'image'])
+		user = users.get_current_user()
+		if user and users.is_current_user_admin():
+			params = self.get_params_dict(['title', 'pubDate', 'content', 'tags', 'image'])
 
-		title_for_tags = re.sub(r'[^\w]', ' ', params['title'])
-		raw_tags = params['tags'].split(',')
-		tags = minifyTags(raw_tags)
+			title_for_tags = re.sub(r'[^\w]', ' ', params['title'])
+			raw_tags = params['tags'].split(',')
+			tags = minifyTags(raw_tags)
 
-		article = Article(
-			title = force_unicode(params['title']),
-			content = force_unicode(params['content']),
-			tags = tags,
-			image = params['image']
-			)
-		article.store()
+			article = Article(
+				title = force_unicode(params['title']),
+				content = force_unicode(params['content']),
+				tags = tags,
+				image = params['image']
+				)
+			article.store()
 
-		# Tags are stored in article as provided by the publisher.
-		# However, when actual mapping is created, the title is 
-		# taken into account.
-		tags = minifyTags(tags + title_for_tags.split(' '))
-		for tag in tags:
-			article_tag = ArticleTag.get(tag)
-			if not article_tag:
-				article_tag = ArticleTag(
-					key_name = tag,
-					articles = [article.key()]
-					)
-			else:
-				article_tag.articles.append(article.key())
-			article_tag.store()
+			# Tags are stored in article as provided by the publisher.
+			# However, when actual mapping is created, the title is 
+			# taken into account.
+			tags = minifyTags(tags + title_for_tags.split(' '))
+			for tag in tags:
+				article_tag = ArticleTag.get(tag)
+				if not article_tag:
+					article_tag = ArticleTag(
+						key_name = tag,
+						articles = [article.key()]
+						)
+				else:
+					article_tag.articles.append(article.key())
+				article_tag.store()
 
-		self.render('blogAdmin.html', {
-			'pageTitle': 'BLOG ADMIN',
-			'logoutUrl': users.create_logout_url('/blog'),
-			'message': 'success'
-			})
+			self.render('blogAdmin.html', {
+				'pageTitle': 'BLOG ADMIN',
+				'logoutUrl': users.create_logout_url('/blog'),
+				'message': 'success'
+				})
+		else:
+			self.write("Unauthorized.")
